@@ -391,14 +391,14 @@ def indb(Nodes, Links, Ways, AllNodes, AC, AcWay):
                                                                               row[8], row[9], row[10], row[11], row[12]))
     out.close()
     print 'Obtain TRANSIMS AL file'
-    SqlString = "Select id, node, link, offset, layer, easting, northing, elevation, tag, notes from AcNodes;"
+    SqlString = "Select id, node, link, layer, offset, easting, northing, elevation, tag, notes from AcNodes;"
     dbcur.execute(SqlString)
     dbcon.commit()
     with open(outfile + ".al.txt", "w") as out:
         out.write("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" % (
         'id', 'node', 'link', 'layer', 'offset', 'easting', 'northing', 'elevation', 'tag', 'notes'))
         for row in dbcur.fetchall():
-            out.write("%d\t%d\t%d\t%f\t%s\t%f\t%f\t%f\t%s\t%s\n" % (
+            out.write("%d\t%d\t%d\t%s\t%f\t%f\t%f\t%f\t%s\t%s\n" % (
             row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]))
     out.close()
 # ----------------------------------------------------
